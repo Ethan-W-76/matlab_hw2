@@ -1,0 +1,37 @@
+% Author Name: Ethan Warminsky
+% Email: warmin16@rowan.edu 
+% Created On: 09/29/2024
+% Updated On: 10/11/2024
+% Updated By: Ethan Warminsky 
+% Course: MATLAB Programming - Fall 2024
+% Assignment: Homework 2
+% Submission Date: [10/11/24]
+% All rights are reserved - GNU License
+
+% Start of Function
+
+function encrypted_message = caesar_cipher(message, shift)
+
+    % Caesar cipher function 
+    encrypted_message = ''; 
+
+    % String for the encrypted message
+    for i = 1:length(message)
+
+        % Check if the character is a letter
+        if isletter(message(i)) 
+
+            % Shift the character by the given shift value
+            shifted_character = mod((message(i) - 'a') + shift, 26) + 'a';
+            encrypted_message = [encrypted_message, char(shifted_character)];
+
+        else
+
+            % If the character is invalid (not a letter), make no change
+            encrypted_message = [encrypted_message, message(i)];
+
+        end
+    end
+end
+
+% End of Function 

@@ -1,0 +1,28 @@
+% Author Name: Ethan Warminsky
+% Email: warmin16@rowan.edu 
+% Created On: 09/29/2024
+% Updated On: 10/11/2024
+% Updated By: Ethan Warminsky 
+% Course: MATLAB Programming - Fall 2024
+% Assignment: Homework 2
+% Submission Date: [10/11/24]
+% All rights are reserved - GNU License
+
+% Start of Main Script  
+
+% Prompt the user for the message to encrypt
+message = input('Enter the message to encrypt (lowercase letters only): ', 's');
+
+% Prompt the user for the shift value
+shift = input('Enter the shift value (1-25): ');
+
+% Call upon the caesar_cipher function
+encrypted_message = caesar_cipher(message, shift);
+
+% Display the original message 
+fprintf('Original message: %s\n', message);
+
+% Display the encrypted message 
+fprintf('Encrypted message: %s\n', encrypted_message);
+
+% End of the Main Script 

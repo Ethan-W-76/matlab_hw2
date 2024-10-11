@@ -1,0 +1,78 @@
+% Author Name: Ethan Warminsky
+% Email: warmin16@rowan.edu 
+% Created On: 09/29/2024
+% Updated On: 10/11/2024
+% Updated By: Ethan Warminsky 
+% Course: MATLAB Programming - Fall 2024
+% Assignment: Homework 2
+% Submission Date: [10/11/24]
+% All rights are reserved - GNU License
+
+% Start of the Weather Data Analysis code
+
+% Establish data for the weather_data.txt file
+data = [
+    "Date,Temperature,Humidity,Precipitation";
+    "2024-09-01,25.5,60,0";
+    "2024-09-02,26.0,65,5";
+    "2024-09-03,24.5,70,10";
+    "2024-09-04,23.0,75,15";
+    "2024-09-05,22.5,80,20"
+];
+
+% Write the data to the weather_data.txt file
+writelines(data, 'weather_data.txt');
+
+% Read the data from 'weather_data.txt' into a cell array
+
+% Open the file for reading
+fileID = fopen('weather_data.txt', 'r'); 
+
+% Skip the header line
+data = textscan(fileID, '%s %f %f %f', 'Delimiter', ',', 'HeaderLines', 1); 
+
+% Close the file
+fclose(fileID); 
+
+% Create vectors for temperature, humidity, and precipitation
+
+    % Second column is temperature
+    temperature = data{2}; 
+
+    % Third column is humidity
+    humidity = data{3};    
+
+    % Fourth column is precipitation
+    precipitation = data{4}; 
+
+% Create statistics:
+
+    % Average temperature
+    avg_temperature = mean(temperature);  
+
+    % Average humidity
+    avg_humidity = mean(humidity);         
+
+    % Total precipitation
+    total_precipitation = sum(precipitation); 
+
+% Save the statistics to a new file 'weather_summary.txt'
+
+% Open a new file
+fileID = fopen('weather_summary.txt', 'w'); 
+
+fprintf(fileID, 'Weather Summary (2024-09-01 to 2024-09-05)\n');
+
+fprintf(fileID, 'Average Temperature: %.2f°C\n', avg_temperature);
+
+fprintf(fileID, 'Average Humidity: %.2f%%\n', avg_humidity);
+
+fprintf(fileID, 'Total Precipitation: %.2f mm\n', total_precipitation);
+
+% Close the file
+fclose(fileID); 
+
+% To see weather_summary.txt, open file under "files", and you will be
+% redirected to a new tab where the data will be presented. 
+
+% End of the Weather Data Analysis code 

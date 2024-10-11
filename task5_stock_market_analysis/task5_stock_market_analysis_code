@@ -1,0 +1,90 @@
+% Author Name: Ethan Warminsky
+% Email: warmin16@rowan.edu 
+% Created On: 09/29/2024
+% Updated On: 10/11/2024
+% Updated By: Ethan Warminsky 
+% Course: MATLAB Programming - Fall 2024
+% Assignment: Homework 2
+% Submission Date: [10/11/24]
+% All rights are reserved - GNU License
+
+% Start of the Stock Market Visualization Code (Fictitious) 
+
+% Array of Closing Stock Prices (Ficticious) 
+stock_prices = [89.3, 89.5, 89.2, 89.8, 90.0, 91.2, 90.9, 91.1, 91.7, 92.1, 93.2, 93.3, 93.0, 94.7, 94.8, 94.9, 95.0, 94.8, 93.2, 94.1, 95.5, 96.1, 97.4, 98.1, 98.4, 99.2, 99.8, 100.9, 101.8, 102.3];
+
+% Create Text File of Array Data
+fileID = fopen('stock_data.txt', 'w');
+
+% Open Text File 'stock_data.txt' 
+fileID = fopen('stock_data.txt', 'w');
+
+% Write the Stock Prices to the File, only to the second decimal place ($)
+for i = 1:length(stock_prices)
+    fprintf(fileID, '%.2f\n', stock_prices(i)); 
+end
+
+% Close the file
+fclose(fileID);
+
+% Read the Stock Data
+fileID = fopen('stock_data.txt', 'r');
+stock_prices = fscanf(fileID, '%f');  
+fclose(fileID);
+
+% Calculate Average Price
+average_price = mean(stock_prices);
+
+% Calculate Highest Price
+highest_price = max(stock_prices);
+
+% Calculate Lowest Price 
+lowest_price = min(stock_prices);
+
+% Calculate Days where Price increased 
+price_increase_days = sum(diff(stock_prices) > 0); 
+
+% Print the Average Closing Price
+fprintf('Average closing price: %.2f\n', average_price);
+
+% Print the Highest Closing Price 
+fprintf('Highest closing price: %.2f\n', highest_price);
+
+% Print the Lowest Closing Price
+fprintf('Lowest closing price: %.2f\n', lowest_price);
+
+% Print the amount of Days where the Stock Price increased 
+fprintf('Number of days the stock price increased: %d\n', price_increase_days);
+
+% Create a line plot using the Data aquired 
+figure;
+plot(stock_prices, '-o', 'LineWidth', 2);
+hold on;
+
+% Create a horizontal line for the Average Price
+yline(average_price, '--r', 'Average Price', 'LabelHorizontalAlignment', 'left');
+
+% Create horizontal lines for the Highest and Lowest Prices
+yline(highest_price, '--g', 'Highest Price', 'LabelHorizontalAlignment', 'left');
+yline(lowest_price, '--b', 'Lowest Price', 'LabelHorizontalAlignment', 'left');
+
+% Create Labels, a Title, and a Legend
+xlabel('Day');
+ylabel('Closing Price ($)');
+title('Stock Price Analysis');
+legend('Daily Prices', 'Average Price', 'Highest Price', 'Lowest Price');
+grid on;
+
+% Save the Plot
+saveas(gcf, 'stock_analysis.png');
+
+% Write a Summary of all the data
+summaryID = fopen('stock_summary.txt', 'w');
+fprintf(summaryID, 'Stock Price Analysis Summary:\n');
+fprintf(summaryID, 'Average closing price: %.2f\n', average_price);
+fprintf(summaryID, 'Highest closing price: %.2f\n', highest_price);
+fprintf(summaryID, 'Lowest closing price: %.2f\n', lowest_price);
+fprintf(summaryID, 'Number of days the stock price increased: %d\n', price_increase_days);
+fclose(summaryID);
+
+% End of Stock Market Visualization Code (Fictitious)

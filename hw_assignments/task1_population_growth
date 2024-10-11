@@ -1,0 +1,40 @@
+% Author Name: Ethan Warminsky
+% Email: warmin16@rowan.edu 
+% Created On: 09/29/2024
+% Updated On: 10/11/2024
+% Updated By: Ethan Warminsky 
+% Course: MATLAB Programming - Fall 2024
+% Assignment: Homework 2
+% Submission Date: [10/11/24]
+% All rights are reserved - GNU License
+
+% This code is a Population Growth Analysis Model for a given dataset. 
+%   It will display the population and growth rate in a table. 
+
+% Population Vector with the given data 
+population = [5000 5200 5350 5600 5800]; 
+
+% Year over Year Growth Rate Vector represented as a percentage 
+growth_rate = (population(2:end) - population(1:end-1)) ./ population(1:end-1) * 100; 
+
+% Initial Growth Rate (zero, due to first data set) 
+growth_rate = [0 growth_rate]; 
+
+% Matrix between population and growth_rate
+pop_data = [population; growth_rate];
+
+% Displaying a Table to represent the data 
+fprintf('Year\tPopulation\tGrowth Rate (%%)\n');
+
+for i = 1:length(population)
+
+    if isnan(growth_rate(i))
+        fprintf('%d\t%d\t\tN/A\n', i, population(i));
+
+    else
+        fprintf('%d\t%d\t\t%.2f%%\n', i, population(i), growth_rate(i));
+
+    end
+end
+
+% End of Population Growth Anaylsis Model Code
